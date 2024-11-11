@@ -42,7 +42,14 @@ class UserController extends Controller
 			return response()->json(['error' => 'Unauthorized'], 401);
 		}
 
-		return response()->json(compact('token'));
+		// Get user role
+		$user = JWTAuth::user();
+		$role = $user->role;
+
+		return response()->json([
+			'token' => $token,
+			'role' => $role
+		]);
 	}
 
 

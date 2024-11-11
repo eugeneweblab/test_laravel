@@ -15,16 +15,16 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+	return $router->app->version();
 });
 
 // Temporary route for creating users
-//$router->get('/run-seeder', function () {
-//	Artisan::call('db:seed', [
-//		'--class' => 'DatabaseSeeder',
-//	]);
-//	return "Database seeded!";
-//});
+/*$router->get('/run-seeder', function () {
+	Artisan::call('db:seed', [
+		'--class' => 'DatabaseSeeder',
+	]);
+	return "Database seeded!";
+});*/
 
 $router->post('register', 'UserController@register');
 $router->post('login', 'UserController@login');
@@ -39,4 +39,8 @@ $router->group(['middleware' => ['auth', 'admin']], function () use ($router) {
 	$router->post('users', 'UserController@store');
 	$router->put('users/{id}', 'UserController@update');
 	$router->delete('users/{id}', 'UserController@destroy');
+});
+
+$router->options('{any:.*}', function () {
+	return response()->json([], 200);
 });

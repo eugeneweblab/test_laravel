@@ -86,6 +86,10 @@ $app->routeMiddleware([
 	'admin' => App\Http\Middleware\AdminMiddleware::class,
 ]);
 
+$app->middleware([
+	App\Http\Middleware\CorsMiddleware::class
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
