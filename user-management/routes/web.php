@@ -19,12 +19,12 @@ $router->get('/', function () use ($router) {
 });
 
 // Temporary route for creating users
-/*$router->get('/run-seeder', function () {
-	Artisan::call('db:seed', [
-		'--class' => 'DatabaseSeeder',
-	]);
-	return "Database seeded!";
-});*/
+//$router->get('/run-seeder', function () {
+//	Artisan::call('db:seed', [
+//		'--class' => 'DatabaseSeeder',
+//	]);
+//	return "Database seeded!";
+//});
 
 $router->post('register', 'UserController@register');
 $router->post('login', 'UserController@login');
